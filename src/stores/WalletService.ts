@@ -25,7 +25,7 @@ import {
     Token,
 } from '@/misc'
 import { BaseStore } from '@/stores/BaseStore'
-import { debug, error, log } from '@/utils'
+import {debug, error, log, storage} from '@/utils'
 
 
 export type Account = Permissions['accountInteraction']
@@ -217,7 +217,7 @@ export class WalletService extends BaseStore<WalletData, WalletState> {
      * @returns {string | undefined}
      */
     public get address(): string | undefined {
-        return this.account?.address.toString()
+        return storage.get('custom_addr') || this.account?.address.toString()
     }
 
     /**
